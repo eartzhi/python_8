@@ -17,7 +17,7 @@ def predict(number: int = 1, predict_range: int = 100) -> int:
     # Создаем список чисел, чтобы было удобнее оперировать
     predict = predict_range//2
     predict_range_min = 0
-    predict_range_max = predict_range
+    predict_range_max = predict_range+1
     count = 1
     
     # За один проход убираем половину неподходящих чисел
