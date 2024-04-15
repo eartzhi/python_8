@@ -15,23 +15,22 @@ def predict(number: int = 1, predict_range: int = 100) -> int:
         int: Число попыток
     """
     # Создаем список чисел, чтобы было удобнее оперировать
-    predict_list = [x for x in range(0, predict_range+1)]
-    predict_num = len(predict_list)//2
-    # predict используем просто для информации о перебираемом числе
-    predict = predict_list[predict_num]
+    predict = predict_range//2
+    predict_range_min = 0
+    predict_range_max = predict_range+1
     count = 1
     
     # За один проход убираем половину неподходящих чисел
     while predict != number:
         count += 1
-        if predict_list[predict_num] < number:
-            predict_list = predict_list[len(predict_list)//2:]
-            predict_num = len(predict_list)//2
-            predict = predict_list[predict_num]
-        elif predict_list[predict_num] > number:
-            predict_list = predict_list[:len(predict_list)//2]
-            predict_num = len(predict_list)//2
-            predict = predict_list[predict_num]
+        if predict < number:
+            predict_range_min = predict
+            predict = (predict_range_max+predict_range_min) // 2
+            
+        elif predict > number:
+            predict_range_max = predict
+            predict = (predict_range_max+predict_range_min) // 2
+            
     return count
 
 
